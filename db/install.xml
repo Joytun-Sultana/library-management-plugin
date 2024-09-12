@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/library/db" VERSION="20200213" COMMENT="XMLDB file for library management"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+
+<TABLES>
+    <TABLE NAME="library_books" COMMENT="Table for storing library books">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" SEQUENCE="true" />
+            <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" />
+            <FIELD NAME="author" TYPE="char" LENGTH="255" NOTNULL="true" />
+            <FIELD NAME="isbn" TYPE="char" LENGTH="13" NOTNULL="true" UNIQUE="true" />
+            <FIELD NAME="copies" TYPE="int" LENGTH="10" NOTNULL="true" />
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+    </TABLE>
+
+    <TABLE NAME="library_issues" COMMENT="Table for storing issued book information">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" UNSIGNED="true" NOTNULL="true" SEQUENCE="true" />
+            <FIELD NAME="bookid" TYPE="int" LENGTH="10" NOTNULL="true" />
+            <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" />
+            <FIELD NAME="issuedate" TYPE="datetime" NOTNULL="true" />
+            <FIELD NAME="returndate" TYPE="datetime" />
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            <key foreign="true" name="bookid" reference="library_books">
+                <field name="bookid" />
+            </key>
+        </KEYS>
+    </TABLE>
+</TABLES>
+</XMLDB>

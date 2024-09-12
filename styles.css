@@ -1,0 +1,36 @@
+/* Styling for the book list */
+body{
+    background-color: #ffffff;
+}
+
+#book-list {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#book-list td, #book-list th {
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#book-list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

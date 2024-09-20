@@ -35,6 +35,7 @@ global $DB;
 $PAGE->set_url(new moodle_url('/local/library/edit.php'));
 $PAGE->set_context($context);
 $PAGE->set_title('Edit page');
+$PAGE->set_heading('Book Details');
 
 if (! has_capability('local/library:managebooks', context_system::instance())) {
     redirect(new moodle_url('/local/library/manage.php'), "Sorry You Don't have access to that page");

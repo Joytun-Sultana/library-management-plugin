@@ -54,6 +54,7 @@ if (!$issues) {
     echo html_writer::div('No books requested for issue.', 'alert alert-info');
 } else {
     echo html_writer::tag('h3', 'Books Requested for Issue');
+    echo '<a style="font-size: 25px;font-weight: bold;color: #307c34;" href="http://localhost/moodle/local/library/manage.php" class="btn">Back to Book List</a>';
     echo '<table class="table">';
     echo '<tr><th>Book Title</th><th>Requested By</th><th>Available Copies</th><th>Issue Date</th><th>Action</th></tr>';
 

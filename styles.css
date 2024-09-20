@@ -34,3 +34,30 @@ body{
     display: inline-block;
     font-size: 16px;
 }
+.custom-alert {
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 100px;
+    margin: 0 auto;
+    background-color: rgb(228, 79, 79);
+    color: white;
+    text-align: center;
+}
+.custom-alert-success {
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 100px;
+    margin: 0 auto;
+    text-align: center;
+    color: #307c34;
+}
+
+

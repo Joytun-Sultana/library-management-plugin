@@ -22,8 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-require_login();
+// defined('MOODLE_INTERNAL') || die();
+// require_login();
 require_once(__DIR__.'/../../config.php');
 require_once('./lib.php');
 $context = context_system::instance();
@@ -48,6 +48,10 @@ echo '<br>';
 if (has_capability('local/library:managebooks', context_system::instance())) {
     echo html_writer::link(new moodle_url('/local/library/edit.php'), 'Add Book',
     ['class' => 'btn btn-primary', 'id' => 'add-book-btn']);
+    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    echo html_writer::link(new moodle_url('/local/library/issueBooks.php'), 'Issue Requests',
+    ['class' => 'btn btn-primary']);
+
 }
 
 if ($books) {

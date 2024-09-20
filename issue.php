@@ -38,19 +38,19 @@ $PAGE->set_heading('Request Issue');
 
 echo $OUTPUT->header();
 
-
 echo '<h1>Request Issue for</h1>';
-echo '<h2 style="color: blue;">'. $book->title. '</h2>';
+echo '<h2 style="color: #4CAF50;; font-size: 30px;">'. $book->title. '</h2>';
 
 echo '<p style="font-size: 20px;">'.'Author: ' . $book->author. '</p>';
 echo '<p style="font-size: 20px;">'. 'ISBN: ' . $book->isbn . '</p>';
 echo '<p style="font-size: 20px;">'. 'Copies available: ' . $book->copies . '</p>';
 
 
+
 $existingissue = $DB->get_record('library_issues', ['bookid' => $bookid, 'userid' => $USER->id, 'returndate' => null]);
 
 if ($existingissue) {
-    echo html_writer::div('You have already requested this book.', 'alert alert-info');
+    echo html_writer::div('You have already requested for this book.', 'alert alert-danger custom-alert');
 } else {
 
     if ($book->copies > 0) {
@@ -61,11 +61,14 @@ if ($existingissue) {
         $issuedata->issuedate = date('Y-m-d H:i:s', time());
         $issuedata->returndate = null;
         $DB->insert_record('library_issues', $issuedata);
-        echo html_writer::div('Book issue request has been submitted.', 'alert alert-success');
+        echo html_writer::div('Book issue request has been submitted.', 'alert alert-success custom-alert-success');
+
     } else {
         echo '<p style="color: red; font-size: 25px;"><b>Sorry, the book is not available right now</b></p>';
     }
 }
+echo '<a style="color: #4CAF50;;font-size: 30px;font-weight: bold;" href="http://localhost/moodle/local/library/manage.php" class="btn">Back to Book List</a>';
+
 
 echo $OUTPUT->footer();
 

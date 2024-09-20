@@ -36,6 +36,10 @@ $PAGE->set_url(new moodle_url('/local/library/edit.php'));
 $PAGE->set_context($context);
 $PAGE->set_title('Edit page');
 
+if (! has_capability('local/library:managebooks', context_system::instance())) {
+    redirect(new moodle_url('/local/library/manage.php'), "Sorry You Don't have access to that page");
+}
+
 $id = optional_param('id', 0, PARAM_INT);
 $mform = new add_book_form();
 

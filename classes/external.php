@@ -25,13 +25,11 @@
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . "/externallib.php");
 require_once($CFG->dirroot . "/local/library/lib.php");
-
 /**
  * Summary of init
  * @return void
  */
 class local_library_external extends external_api {
-
     /**
      * Summary of local_library_external
      * Parameters for delete_book function.
@@ -44,7 +42,6 @@ class local_library_external extends external_api {
             ]
         );
     }
-
     /**
      * Delete a book from the library.
      *
@@ -64,7 +61,6 @@ class local_library_external extends external_api {
         'warnings' => $warnings,
         ];
     }
-
     /**
      * Return type for delete_book function.
      *

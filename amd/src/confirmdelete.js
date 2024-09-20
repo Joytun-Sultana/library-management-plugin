@@ -22,7 +22,7 @@ define([
              ModalFactory,
              ModalEvents,
              Notification) {
-    $('.delete-btn').on('click', function() {
+    $('.delete-btn').on('click', function() {  // Class .delete-btn is button class defined in manage.php file.
         let elementId = $(this).attr('id');
         let arr = elementId.split("-");
         let bookId = arr[arr.length - 1];
@@ -37,7 +37,7 @@ define([
             modal.setSaveButtonText(str.get_string('delete', 'local_library', '', ''));
             let root = modal.getRoot();
             root.on(ModalEvents.save, function() {
-                let wsfunction = 'local_library_delete_book';
+                let wsfunction = 'local_library_delete_book';   // Defined in classes/external.php file.
                 let params = { 'bookid': parseInt(bookId) };
 
                 let request = {

@@ -1,10 +1,24 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Edit or Create a record.
  *
  * @package    local_library
- * @copyright  2024  joytun
+ * @copyright  2024 Joytun
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -20,8 +34,8 @@ if (!has_capability('local/library:managebooks', $context)) {
 
 $issueid = required_param('issueid', PARAM_INT);
 
-$issue = $DB->get_record('library_issues', array('id' => $issueid), '*', MUST_EXIST);
-$book = $DB->get_record('library_books', array('id' => $issue->bookid), '*', MUST_EXIST);
+$issue = $DB->get_record('library_issues', ['id' => $issueid], '*', MUST_EXIST);
+$book = $DB->get_record('library_books', ['id' => $issue->bookid], '*', MUST_EXIST);
 
 
 if ($book->copies < 1) {
@@ -31,16 +45,17 @@ if ($book->copies < 1) {
 $transaction = $DB->start_delegated_transaction();
 
 try {
-    $DB->set_field('library_books', 'copies', $book->copies - 1, array('id' => $book->id));
 
-    $DB->update_record('library_issues', array('id' => $issue->id, 'issuedate' => date('Y-m-d H:i:s', time())));
+    $DB->set_field('library_books', 'copies', $book->copies - 1, ['id' => $book->id]);
+
+    $DB->update_record('library_issues', ['id' => $issue->id, 'issuedate' => date('Y-m-d H:i:s', time())]);
 
     $transaction->allow_commit();
-    $DB->delete_records('library_issues',['id'=> $issue->id]);
-    redirect(new moodle_url('/local/library/issueBooks.php'), 'Book issue confirmed and copies updated.', null, \core\output\notification::NOTIFY_SUCCESS);
-   
-} 
-catch (Exception $e) {
+    $DB->delete_records('library_issues', ['id' => $issue->id]);
+    redirect(new moodle_url('/local/library/issueBooks.php'),
+    'Book issue confirmed and copies updated.', null, \core\output\notification::NOTIFY_SUCCESS);
+} catch (Exception $e) {
+
     $transaction->rollback($e);
     throw $e;
 }
